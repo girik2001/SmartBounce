@@ -1,7 +1,7 @@
 import streamlit as st
 
 def home_page():
-    st.write("""<p style = "color:Tomato; text-align:center; font-family: Serif; font-size:100px; font-weight:bold; margin: 0">Smart Bounce.</p>
+    st.write("""<p style = "color:Tomato; text-align:center; font-family: Serif; font-size:90px; font-weight:bold; margin: 0">Smart Bounce.</p>
     <h2 style = "color:white; text-align:center; margin:0;">BOUNCE BACK SMARTER FROM MISTAKES</h2>""", unsafe_allow_html=True)
 
     st.text("")
