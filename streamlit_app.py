@@ -15,6 +15,9 @@ if "start_quiz_topic" not in st.session_state:
 if "start_quiz_doc" not in st.session_state:
     st.session_state['start_quiz_doc'] = False
 
+if "question_number" not in st.session_state:
+    st.session_state['question_number'] = 0
+
 if st.session_state['current_page'] == "home_page":
     home_page()
 

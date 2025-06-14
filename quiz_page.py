@@ -1,4 +1,5 @@
 import streamlit as st
+from quiz_game import quiz_game
 
 def toggle_button_clicked(value):
     st.session_state.quiz_page = value
@@ -22,9 +23,9 @@ def quiz_page():
         topic_selectbox = st.selectbox('topic', options=["Python", "DSA using Python", "Machine Learning", "Data Science"], label_visibility = "hidden", index=0)
         st.button("Start Quiz", on_click=start_quiz_button_clicked)
         if st.session_state.start_quiz_topic:
-            st.write("quiz started for topic")
+            quiz_game()
     elif st.session_state.quiz_page == "upload_doc":
         file_uploader = st.file_uploader('file', label_visibility="hidden", accept_multiple_files=False, type=['pdf'])
         st.button("Start Quiz", on_click=start_quiz_button_clicked)
         if st.session_state.start_quiz_doc:
-            st.write("quiz started for doc")
+            quiz_game()
