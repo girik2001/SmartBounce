@@ -55,7 +55,7 @@ def generate_question():
             model="gemini-2.0-flash-lite",
             config=types.GenerateContentConfig(
                 system_instruction=SYSTEM_INSTRUCTIONS,
-                temperature=1,
+                temperature=2,
                 response_schema=QuestionGenertaionResponseConfig,
                 response_mime_type="application/json"
             ),
