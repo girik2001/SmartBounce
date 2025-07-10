@@ -35,16 +35,32 @@ Instructions:
 
 def generate_question():
     time.sleep(1.5)
-    response = CLIENT.models.generate_content(
-        model="gemini-2.0-flash-lite",
-        config=types.GenerateContentConfig(
-            system_instruction=SYSTEM_INSTRUCTIONS,
-            temperature=1,
-            response_schema=QuestionGenertaionResponseConfig,
-            response_mime_type="application/json"
-        ),
-        contents=f"""topic: {st.session_state.selected_topic}
-        current_difficulty_level: {st.session_state.difficulty_level}
-        list_of_questions: {st.session_state.data['question'].to_list()}""",
-    )
+    try:
+        response = CLIENT.models.generate_content(
+            model="gemini-2.0-flash-lite",
+            config=types.GenerateContentConfig(
+                system_instruction=SYSTEM_INSTRUCTIONS,
+                temperature=1,
+                response_schema=QuestionGenertaionResponseConfig,
+                response_mime_type="application/json"
+            ),
+            contents=f"""topic: {st.session_state.selected_topic}
+            current_difficulty_level: {st.session_state.difficulty_level}
+            list_of_questions: {st.session_state.data['question'].to_list()}""",
+        )
+    except:
+        time.sleep(60)
+        st.warning("Please wait while we process your request. Only 30 requests per minute allowed", icon="⚠️")
+        response = CLIENT.models.generate_content(
+            model="gemini-2.0-flash-lite",
+            config=types.GenerateContentConfig(
+                system_instruction=SYSTEM_INSTRUCTIONS,
+                temperature=1,
+                response_schema=QuestionGenertaionResponseConfig,
+                response_mime_type="application/json"
+            ),
+            contents=f"""topic: {st.session_state.selected_topic}
+            current_difficulty_level: {st.session_state.difficulty_level}
+            list_of_questions: {st.session_state.data['question'].to_list()}""",
+        )
     return ast.literal_eval(response.text)
